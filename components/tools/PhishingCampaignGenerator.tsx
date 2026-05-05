@@ -1,8 +1,10 @@
 "use client";
-import { useState } from 'react';
+
 import { Input } from "@/components/ui/input";
-import { experimental_useObject as useObject } from "ai/react";
 import { phishingCampaignSchemaObject } from "@/lib/schema";
+
+import { experimental_useObject as useObject } from "ai/react";
+import { useState } from "react";
 
 export function PhishingCampaignGenerator() {
   const [input, setInput] = useState("");
@@ -23,7 +25,7 @@ export function PhishingCampaignGenerator() {
   return (
     <div className="mx-auto max-w-4xl">
       <h1 className="mb-6 font-bold text-2xl">Phishing Campaign Generator</h1>
-      
+
       <form onSubmit={handleSubmit} className="mb-8">
         <Input
           value={input}
@@ -32,11 +34,7 @@ export function PhishingCampaignGenerator() {
           className="mb-4 min-h-11"
           disabled={isLoading}
         />
-       <button
-          type="submit"
-          disabled={isLoading || !input}
-          className="w-full rounded border border-border bg-background/80 px-4 py-2 shadow-sm"
-        >
+        <button type="submit" disabled={isLoading || !input} className="w-full rounded border border-border bg-background/80 px-4 py-2 shadow-sm">
           {isLoading ? "Generating..." : "Generate Campaign"}
         </button>
       </form>
@@ -45,27 +43,27 @@ export function PhishingCampaignGenerator() {
         <div key={campaign?.title} className="mb-6 rounded-lg border p-4">
           <h2 className="mb-4 font-bold text-black-a12 text-xl dark:text-white-a12">{campaign?.title}</h2>
           <div className="flex flex-col">
-            <div className='mb-2 gap-1'>
+            <div className="mb-2 gap-1">
               <h3 className="font-semibold text-black-a12 dark:text-white-a12">Goal</h3>
-              <p className='mt-0 pt-0 font-medium text-gray-11'>{campaign?.goal}</p>
+              <p className="mt-0 pt-0 font-medium text-gray-11">{campaign?.goal}</p>
             </div>
-            <div className='mb-2 gap-1'>
+            <div className="mb-2 gap-1">
               <h3 className="font-semibold text-black-a12 dark:text-white-a12">Target Audience</h3>
-              <p className='mt-0 pt-0 font-medium text-gray-11'>{campaign?.targetAudience}</p>
+              <p className="mt-0 pt-0 font-medium text-gray-11">{campaign?.targetAudience}</p>
             </div>
-            <div className='mb-2'>
+            <div className="mb-2">
               <h3 className="font-semibold text-black-a12 dark:text-white-a12">Key Message</h3>
-              <p className='mt-0 pt-0 font-medium text-gray-11'>{campaign?.keyMessage}</p>
+              <p className="mt-0 pt-0 font-medium text-gray-11">{campaign?.keyMessage}</p>
             </div>
-            <div className='mb-2'>
+            <div className="mb-2">
               <h3 className="font-semibold text-black-a12 dark:text-white-a12">Duration</h3>
-              <p className='mt-0 pt-0 font-medium text-gray-11'>{campaign?.duration}</p>
+              <p className="mt-0 pt-0 font-medium text-gray-11">{campaign?.duration}</p>
             </div>
-            <div className='mb-2'>
+            <div className="mb-2">
               <h3 className="font-semibold text-black-a12 dark:text-white-a12">Budget</h3>
-              <p className='mt-0 pt-0 font-medium text-gray-11'>${campaign?.budget?.toLocaleString()}</p>
+              <p className="mt-0 pt-0 font-medium text-gray-11">${campaign?.budget?.toLocaleString()}</p>
             </div>
-            <div className='mb-2'>
+            <div className="mb-2">
               <h3 className="font-semibold text-black-a12 dark:text-white-a12">Platforms</h3>
               <div className="flex flex-wrap gap-2">
                 {campaign?.platforms?.map((platform, i) => (
@@ -75,7 +73,7 @@ export function PhishingCampaignGenerator() {
                 ))}
               </div>
             </div>
-            <div className='mb-2'>
+            <div className="mb-2">
               <h3 className="font-semibold text-black-a12 dark:text-white-a12">Tags</h3>
               <div className="flex flex-wrap gap-2">
                 {campaign?.tags?.map((tag, i) => (

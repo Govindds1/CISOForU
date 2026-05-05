@@ -5,9 +5,9 @@ import type { Metadata } from "next";
 import { Providers } from "@/components/providers";
 import { OpenGraph } from "@/lib/og";
 
+import { Analytics } from "@vercel/analytics/react";
 import clsx from "clsx";
 import { Inter } from "next/font/google";
-import { Analytics } from '@vercel/analytics/react'
 
 export const metadata: Metadata = {
   ...OpenGraph,

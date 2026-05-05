@@ -13,12 +13,8 @@ export async function GET(request: Request) {
     const { title } = parameters;
 
     // Fetch fonts
-    const interRegular = fetch(new URL("/public/assets/inter/regular.ttf", import.meta.url)).then((res) => 
-      res.arrayBuffer()
-    );
-    const interSemiBold = fetch(new URL("/public/assets/inter/semi-bold.ttf", import.meta.url)).then((res) => 
-      res.arrayBuffer()
-    );
+    const interRegular = fetch(new URL("/public/assets/inter/regular.ttf", import.meta.url)).then((res) => res.arrayBuffer());
+    const interSemiBold = fetch(new URL("/public/assets/inter/semi-bold.ttf", import.meta.url)).then((res) => res.arrayBuffer());
 
     // Subtle grid pattern
     const pattern = `data:image/svg+xml,${encodeURIComponent(`
@@ -30,107 +26,100 @@ export async function GET(request: Request) {
     `)}`;
 
     return new ImageResponse(
-      (
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          width: "100%",
+          height: "100%",
+          backgroundColor: "#111111",
+          backgroundImage: `url(${pattern})`,
+          padding: "60px",
+        }}
+      >
+        {/* Main content */}
         <div
           style={{
+            flex: 1,
             display: "flex",
             flexDirection: "column",
-            width: "100%",
-            height: "100%",
-            backgroundColor: "#111111",
-            backgroundImage: `url(${pattern})`,
-            padding: "60px",
+            justifyContent: title ? "flex-start" : "center",
+            gap: title ? "40px" : "32px",
+            paddingTop: title ? "40px" : "0",
           }}
         >
-          {/* Main content */}
+          {/* Product tagline */}
           <div
             style={{
-              flex: 1,
               display: "flex",
-              flexDirection: "column",
-              justifyContent: title ? "flex-start" : "center",
-              gap: title ? "40px" : "32px",
-              paddingTop: title ? "40px" : "0",
+              alignItems: "center",
+              gap: "16px",
             }}
           >
-            {/* Product tagline */}
             <div
               style={{
                 display: "flex",
                 alignItems: "center",
-                gap: "16px",
+                justifyContent: "center",
+                width: title ? "56px" : "48px",
+                height: title ? "56px" : "48px",
+                backgroundColor: "#333333",
+                borderRadius: "8px",
+                position: "relative",
+                overflow: "hidden",
               }}
             >
-              <div
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  width: title ? "56px" : "48px",
-                  height: title ? "56px" : "48px",
-                  backgroundColor: "#333333",
-                  borderRadius: "8px",
-                  position: "relative",
-                  overflow: "hidden",
-                }}
-              >
-                {/* Shield with Tie Icon */}
-                <svg 
-                  width={title ? "32" : "28"} 
-                  height={title ? "32" : "28"} 
-                  viewBox="0 0 24 24" 
-                  fill="white"
-                >
-                  <path d="M12 2L3 6v7c0 4.5 3.5 8.5 9 11 5.5-2.5 9-6.5 9-11V6l-9-4z" />
-                  <path d="M12 4L7 13h5v7l5-9h-5V4z" fill="#333333" />
-                </svg>
-              </div>
-              <div
-                style={{
-                  color: "#999999",
-                  fontSize: title ? "24px" : "20px",
-                  fontWeight: 400,
-                  letterSpacing: "-0.01em",
-                }}
-              >
-                Real Incidents • Practical Tools • Ethical Leadership
-              </div>
+              {/* Shield with Tie Icon */}
+              <svg width={title ? "32" : "28"} height={title ? "32" : "28"} viewBox="0 0 24 24" fill="white">
+                <path d="M12 2L3 6v7c0 4.5 3.5 8.5 9 11 5.5-2.5 9-6.5 9-11V6l-9-4z" />
+                <path d="M12 4L7 13h5v7l5-9h-5V4z" fill="#333333" />
+              </svg>
             </div>
-
-            {/* Title */}
-            <h1
+            <div
               style={{
-                color: "white",
-                fontSize: title ? "86px" : "72px",
-                fontWeight: 600,
-                lineHeight: 1.1,
-                margin: 0,
-                letterSpacing: "-0.02em",
-                paddingRight: title ? "100px" : "0",
+                color: "#999999",
+                fontSize: title ? "24px" : "20px",
+                fontWeight: 400,
+                letterSpacing: "-0.01em",
               }}
             >
-              {title || "What If You Were a CISO?"}
-            </h1>
-
-            {/* Description - only shown when no title parameter is provided */}
-            {!title && (
-              <p
-                style={{
-                  color: "rgba(255, 255, 255, 0.7)",
-                  fontSize: "24px",
-                  margin: 0,
-                  fontWeight: 400,
-                  letterSpacing: "-0.01em",
-                  lineHeight: 1.4,
-                  maxWidth: "90%",
-                }}
-              >
-                A comprehensive guide to modern security leadership, featuring real-world case studies and practical resources for aspiring CISOs.
-              </p>
-            )}
+              Real Incidents • Practical Tools • Ethical Leadership
+            </div>
           </div>
+
+          {/* Title */}
+          <h1
+            style={{
+              color: "white",
+              fontSize: title ? "86px" : "72px",
+              fontWeight: 600,
+              lineHeight: 1.1,
+              margin: 0,
+              letterSpacing: "-0.02em",
+              paddingRight: title ? "100px" : "0",
+            }}
+          >
+            {title || "What If You Were a CISO?"}
+          </h1>
+
+          {/* Description - only shown when no title parameter is provided */}
+          {!title && (
+            <p
+              style={{
+                color: "rgba(255, 255, 255, 0.7)",
+                fontSize: "24px",
+                margin: 0,
+                fontWeight: 400,
+                letterSpacing: "-0.01em",
+                lineHeight: 1.4,
+                maxWidth: "90%",
+              }}
+            >
+              A comprehensive guide to modern security leadership, featuring real-world case studies and practical resources for aspiring CISOs.
+            </p>
+          )}
         </div>
-      ),
+      </div>,
       {
         width: 1200,
         height: 600,
@@ -146,10 +135,10 @@ export async function GET(request: Request) {
             weight: 600,
           },
         ],
-      }
+      },
     );
   } catch (error) {
-    console.error('OG Image generation failed:', error);
+    console.error("OG Image generation failed:", error);
     return new Response("Failed to generate the image", {
       status: 500,
     });

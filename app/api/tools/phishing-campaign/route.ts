@@ -1,7 +1,8 @@
-import { anthropic } from '@ai-sdk/anthropic'
-import { streamObject } from 'ai';
-import { phishingCampaignSchemaObject } from '@/lib/schema';
-import { NextResponse } from 'next/server';
+import { phishingCampaignSchemaObject } from "@/lib/schema";
+
+import { anthropic } from "@ai-sdk/anthropic";
+import { streamObject } from "ai";
+import { NextResponse } from "next/server";
 
 export async function POST(req: Request) {
   try {
@@ -12,12 +13,12 @@ export async function POST(req: Request) {
       prompt: `Generate a detailed phishing awareness campaign based on these requirements: ${prompt}. 
       The campaign should include specific goals, target audience, budget considerations, and key messages 
       that will help improve security awareness in the organization.`,
-      schema: phishingCampaignSchemaObject
+      schema: phishingCampaignSchemaObject,
     });
 
     return response.toTextStreamResponse();
   } catch (error) {
-    console.error('Phishing Campaign Generation Error:', error);
-    return NextResponse.json({ error: 'Failed to generate campaign' }, { status: 500 });
+    console.error("Phishing Campaign Generation Error:", error);
+    return NextResponse.json({ error: "Failed to generate campaign" }, { status: 500 });
   }
 }

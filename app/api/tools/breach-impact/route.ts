@@ -1,8 +1,9 @@
 // import { google } from '@ai-sdk/google';
-import { anthropic } from '@ai-sdk/anthropic'
-import { streamObject } from 'ai';
-import { breachImpactSchemaObject } from '@/lib/schema';
-import { NextResponse } from 'next/server';
+import { breachImpactSchemaObject } from "@/lib/schema";
+
+import { anthropic } from "@ai-sdk/anthropic";
+import { streamObject } from "ai";
+import { NextResponse } from "next/server";
 
 export async function POST(req: Request) {
   try {
@@ -13,12 +14,12 @@ export async function POST(req: Request) {
       prompt: `Analyze this security breach scenario and calculate detailed impacts: ${prompt}.
       Consider financial implications, affected systems, recovery time, and provide specific 
       mitigation steps. The analysis should be thorough and actionable for security teams.`,
-      schema: breachImpactSchemaObject
+      schema: breachImpactSchemaObject,
     });
 
     return response.toTextStreamResponse();
   } catch (error) {
-    console.error('Breach Impact Calculation Error:', error);
-    return NextResponse.json({ error: 'Failed to calculate impact' }, { status: 500 });
+    console.error("Breach Impact Calculation Error:", error);
+    return NextResponse.json({ error: "Failed to calculate impact" }, { status: 500 });
   }
 }

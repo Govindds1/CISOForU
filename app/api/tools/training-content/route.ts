@@ -1,7 +1,8 @@
-import { anthropic } from '@ai-sdk/anthropic'
-import { streamObject } from 'ai';
-import { trainingModuleSchemaObject } from '@/lib/schema';
-import { NextResponse } from 'next/server';
+import { trainingModuleSchemaObject } from "@/lib/schema";
+
+import { anthropic } from "@ai-sdk/anthropic";
+import { streamObject } from "ai";
+import { NextResponse } from "next/server";
 
 export async function POST(req: Request) {
   try {
@@ -12,12 +13,12 @@ export async function POST(req: Request) {
       prompt: `Generate comprehensive security training content based on these requirements: ${prompt}.
       Include clear learning objectives, appropriate difficulty level, and engaging delivery format.
       The content should be practical and help improve the organization's security posture.`,
-      schema: trainingModuleSchemaObject
+      schema: trainingModuleSchemaObject,
     });
 
     return response.toTextStreamResponse();
   } catch (error) {
-    console.error('Training Content Generation Error:', error);
-    return NextResponse.json({ error: 'Failed to generate training content' }, { status: 500 });
+    console.error("Training Content Generation Error:", error);
+    return NextResponse.json({ error: "Failed to generate training content" }, { status: 500 });
   }
 }

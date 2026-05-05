@@ -1,5 +1,6 @@
 import * as FadeIn from "@/components/motion/staggers/fade";
 import { ToolsList } from "@/components/tools/tools-list";
+
 import React from "react";
 
 export function generateMetadata() {

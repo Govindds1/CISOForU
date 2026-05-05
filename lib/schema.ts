@@ -15,7 +15,9 @@ export const phishingCampaignSchema = z.object({
 });
 
 export const phishingCampaignsSchema = z.array(phishingCampaignSchema);
-export const phishingCampaignSchemaObject = z.object({ campaigns: phishingCampaignsSchema });
+export const phishingCampaignSchemaObject = z.object({
+  campaigns: phishingCampaignsSchema,
+});
 
 export type PhishingCampaign = z.infer<typeof phishingCampaignSchema>;
 
@@ -31,7 +33,9 @@ export const breachImpactSchema = z.object({
 });
 
 export const breachImpactsSchema = z.array(breachImpactSchema);
-export const breachImpactSchemaObject = z.object({ impacts: breachImpactsSchema });
+export const breachImpactSchemaObject = z.object({
+  impacts: breachImpactsSchema,
+});
 
 export type BreachImpact = z.infer<typeof breachImpactSchema>;
 
@@ -48,6 +52,8 @@ export const trainingModuleSchema = z.object({
 });
 
 export const trainingModulesSchema = z.array(trainingModuleSchema);
-export const trainingModuleSchemaObject = z.object({ modules: trainingModulesSchema });
+export const trainingModuleSchemaObject = z.object({
+  modules: trainingModulesSchema,
+});
 
 export type TrainingModule = z.infer<typeof trainingModuleSchema>;
