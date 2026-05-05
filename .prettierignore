@@ -1,1 +1,8 @@
 *.mdx
+node_modules
+.pnpm-store
+.next
+out
+coverage
+pnpm-lock.yaml
+public

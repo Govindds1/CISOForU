@@ -7,10 +7,10 @@
   },
   "files": {
     "ignoreUnknown": false,
-    "ignore": []
+    "ignore": ["**/node_modules", "**/.pnpm-store", ".next", "out", "coverage", "public"]
   },
   "formatter": {
-    "ignore": [".next"],
+    "ignore": [".next", "**/node_modules", "**/.pnpm-store", "public"],
     "enabled": true,
     "indentStyle": "space",
     "indentWidth": 2,
@@ -25,7 +25,7 @@
     }
   },
   "linter": {
-    "ignore": [".next"],
+    "ignore": [".next", "**/node_modules", "**/.pnpm-store", "public"],
     "enabled": true,
     "rules": {
       "recommended": true,
